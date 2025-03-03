@@ -15,9 +15,10 @@ class Game:
         self.score = 0
 
         base_dir = path.dirname(__file__)
-        self.block_place_sound = pygame.mixer.Sound(path.join(base_dir, "roblox_oof.mp3"))
-        self.clear_rows_sound = pygame.mixer.Sound(path.join(base_dir, "anime_wow.mp3"))
-        self.game_over_sound = pygame.mixer.Sound(path.join(base_dir, "you_lost.mp3"))
+        sounds_dir = path.join(base_dir, "assets", "sounds")
+        self.block_place_sound = pygame.mixer.Sound(path.join(sounds_dir, "roblox_oof.mp3"))
+        self.clear_rows_sound = pygame.mixer.Sound(path.join(sounds_dir, "anime_wow.mp3"))
+        self.game_over_sound = pygame.mixer.Sound(path.join(sounds_dir, "you_lost.mp3"))
 
         self.clear_rows_sound.set_volume(.3)
         self.block_place_sound.set_volume(.35)
