@@ -17,10 +17,11 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 game = Game()
+game.add_block()
 
 GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, 250)
-pygame.display.set_caption("Pygame tetris")
+pygame.display.set_caption("Pygame 2048")
   
 while True:
     for event in pygame.event.get():
@@ -33,16 +34,13 @@ while True:
                     game.move_left()
                 if event.key in [pygame.K_RIGHT, pygame.K_d]:
                     game.move_right()
+                if event.key in [pygame.K_UP, pygame.K_w]:
+                    game.move_up()
                 if event.key in [pygame.K_DOWN, pygame.K_s]:
-                    if game.move_down():
-                        game.add_point()
-                if event.key in [pygame.K_SPACE, pygame.K_UP, pygame.K_w]:
-                    game.rotate()
+                    game.move_down()
             elif event.key in [pygame.K_RETURN, pygame.K_r, pygame.K_SPACE]:
                 game.game_over = False
                 game.reset()
-        if event.type == GAME_UPDATE and not game.game_over:
-            game.move_down()
 
     score_value_surface = title_font.render(str(game.score), True, Colors.white.value)
 
